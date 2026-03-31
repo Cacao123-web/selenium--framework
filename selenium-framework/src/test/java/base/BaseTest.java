@@ -2,6 +2,7 @@ package base;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -24,8 +25,20 @@ public class BaseTest {
                       @Optional("dev") String env){
 
         if(browser.equalsIgnoreCase("chrome")){
-            driver.set(new ChromeDriver());
-        }
+
+    ChromeOptions options = new ChromeOptions();
+
+    boolean isCI = System.getenv("CI") != null;
+
+    if (isCI) {
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--window-size=1920,1080");
+    }
+
+    driver.set(new ChromeDriver(options));
+}
 
         getDriver().manage().window().maximize();
     }

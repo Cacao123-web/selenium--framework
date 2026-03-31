@@ -12,7 +12,7 @@ public class SampleTest extends BaseTest {
 
         getDriver().get("https://www.google.com");
 
-        Assert.assertEquals("A","A"); // cố tình fail để chụp screenshot
+        Assert.assertEquals("A","A");
     }
 
     @Test

@@ -1,29 +1,20 @@
 package test;
 
 import base.BaseTest;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SampleTest extends BaseTest {
 
     @Test
-    public void testGoogle1(){
-
+    public void testGoogle1() {
         getDriver().get("https://www.google.com");
-
-        Assert.assertEquals("A","A");
+        Assert.assertTrue(getDriver().getTitle().toLowerCase().contains("google"));
     }
 
     @Test
-    public void testGoogle2(){
-
+    public void testGoogle2() {
         getDriver().get("https://www.google.com");
-    }
-
-    @Test
-    public void testGoogle3(){
-
-        getDriver().get("https://www.google.com");
+        Assert.assertTrue(getDriver().getCurrentUrl().contains("google"));
     }
 }
